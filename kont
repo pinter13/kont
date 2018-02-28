@@ -2,7 +2,7 @@
 # Author: Pintér Gábor
 # Website: xpg.hu
 # E-mail: info@xpg.hu
-# Release date: 2018.02.15
+# Release date: 2018.02.28
 
 cn="container name:"
 if [ $# -eq 0 ]; then
