@@ -1,0 +1,109 @@
+#!/bin/bash
+# Author: Pintér Gábor
+# Website: xpg.hu
+# E-mail: info@xpg.hu
+# Release date: 2018.02.15
+
+cn="container name:"
+if [ $# -eq 0 ]; then
+    echo '1 LXC-START'
+    echo '2 LXC-STOP'
+    echo '3 LXC-SHOW'
+    echo '4 LXC-ATTACH'
+    echo '5 LXC-CREATE'
+    echo '6 LXC-DESTROY'
+
+    read -p 'Choose an option:' choice   
+
+    case $choice in
+        1)
+        read -p "lxc-start -- $cn" cont_name
+        sudo lxc-start -n $cont_name
+        ;;
+        2)
+        read -p "lxc-stop -- $cn" cont_name
+        sudo lxc-stop -n $cont_name
+        ;;
+        3)
+        sudo lxc-ls -f
+        ;;
+        4)
+        read -p "lxc-attach -- $cn" cont_name
+        sudo lxc-attach -n $cont_name
+        ;;
+        5)
+        read -p "lxc-create -- $cn" cont_name
+        sudo lxc-create -n $cont_name -t downloads
+        ;;
+        6)
+        read -p "lxc-destroy -- $cn" cont_name
+        sudo lxc-destroy -n $cont_name
+        ;;
+        *)
+        echo 'Unavailable option :('
+    esac
+elif [ $# -lt 2 ]; then
+	case $1 in
+        1)
+        read -p "lxc-start -- $cn" cont_name
+        sudo lxc-start -n $cont_name
+        ;;
+        2)
+        read -p "lxc-stop -- $cn" cont_name
+        sudo lxc-stop -n $cont_name
+        ;;
+        3)
+        sudo lxc-ls -f
+        ;;
+        4)
+        read -p "lxc-attach -- $cn" cont_name
+        sudo lxc-attach -n $cont_name
+        ;;
+        5)
+        read -p "lxc-create -- $cn" cont_name
+        sudo lxc-create -n $cont_name -t downloads
+        ;;
+        6)
+        read -p "lxc-destroy -- $cn" cont_name
+        sudo lxc-destroy -n $cont_name
+        ;;
+        -help)
+        echo 'Parameter list:'
+        echo '1 LXC-START 2 LXC-STOP'
+	echo '3 LXC-SHOW 4 LXC-ATTACH'
+	echo '5 LXC-CREATE 6 LXC-DESTROY'
+	echo '-help help'
+        echo 'Optional second parameter - container_name'
+        echo "Example: kont 1 $cn"
+        ;;
+        *)
+        echo 'Unavailable parameter :('
+        echo 'Try -help parameter'
+    esac
+elif [ $# = 2 ]; then
+	case $1 in
+        1)
+        sudo lxc-start -n $2
+        ;;
+        2)
+        sudo lxc-stop -n $2
+        ;;
+        3)
+        sudo lxc-ls -f
+        ;;
+        4)
+        sudo lxc-attach -n $2
+        ;;
+        5)
+        sudo lxc-create -n $2 -t downloads
+        ;;
+        6)
+        sudo lxc-destroy -n $2
+        ;;
+        *)
+        echo 'Unavailable parameter :('
+        echo 'Try -help parameter'
+    esac
+else
+	echo "Too much parameter"
+fi
