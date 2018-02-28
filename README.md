@@ -5,7 +5,7 @@ Copy it in /usr/bin and enjoy ;)
 
 Usage:
 
-Use kont without parameter and select option and write the container name, or use parameters
+Use kont without parameter select an option and write the container name, or use parameters
 
 First parameter
   - 1 start a container
