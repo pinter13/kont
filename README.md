@@ -18,4 +18,4 @@ First parameter
 Second parameter
   - container name
   
-Example: kont 1 conainer_name --> Start
+Example: kont 1 conainer_name --> to start a container
